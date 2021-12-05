@@ -47,24 +47,25 @@ const Header = () => {
         <AppBar position="static">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
-              >
-                <Avatar
-                  style={{
-                    backgroundColor: "white",
-                    height: "5rem",
-                    width: "5rem",
-                  }}
-                  alt="Bodyboost Gym logo"
-                  src={gymlogo}
-                  variant="square"
-                />
-              </Typography>
-
+              <Link to="/">
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+                >
+                  <Avatar
+                    style={{
+                      backgroundColor: "white",
+                      height: "5rem",
+                      width: "5rem",
+                    }}
+                    alt="Bodyboost Gym logo"
+                    src={gymlogo}
+                    variant="square"
+                  />
+                </Typography>
+              </Link>
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                 <IconButton
                   size="large"
@@ -136,32 +137,74 @@ const Header = () => {
 
               <Box sx={{ flexGrow: 0, display: { md: "flex" } }}>
                 <Box sx={{ display: { xs: "none", md: "flex" } }}>
-                  {pages.map((page) => (
-                    <a
-                      style={{
-                        textDecoration: "none",
-                        color: "white",
-                      }}
-                      href={`#${page}`}
-                    >
-                      <Button
-                        key={page}
-                        onClick={handleCloseNavMenu}
-                        sx={[
-                          { my: 2, mx: 4, color: "white", display: "block" },
-                          {
-                            "&:hover": {
-                              color: "secondary.main",
-                              cursor: "pointer",
-                            },
-                          },
-                        ]}
-                      >
-                        {" "}
-                        {page}
-                      </Button>
-                    </a>
-                  ))}
+                  {pages.map((page) => {
+                    if (page === "About") {
+                      return (
+                        <Link
+                          to="about"
+                          style={{
+                            textDecoration: "none",
+                            color: "white",
+                          }}
+                        >
+                          <Button
+                            key={page}
+                            sx={[
+                              {
+                                my: 2,
+                                mx: 4,
+                                color: "white",
+                                display: "block",
+                              },
+                              {
+                                "&:hover": {
+                                  color: "secondary.main",
+                                  cursor: "pointer",
+                                },
+                              },
+                            ]}
+                          >
+                            {" "}
+                            {page}
+                          </Button>
+                        </Link>
+                      );
+                    } else {
+                      return (
+                        <>
+                          <a
+                            style={{
+                              textDecoration: "none",
+                              color: "white",
+                            }}
+                            href={`#${page}`}
+                          >
+                            <Button
+                              key={page}
+                              onClick={handleCloseNavMenu}
+                              sx={[
+                                {
+                                  my: 2,
+                                  mx: 4,
+                                  color: "white",
+                                  display: "block",
+                                },
+                                {
+                                  "&:hover": {
+                                    color: "secondary.main",
+                                    cursor: "pointer",
+                                  },
+                                },
+                              ]}
+                            >
+                              {" "}
+                              {page}
+                            </Button>
+                          </a>
+                        </>
+                      );
+                    }
+                  })}
                 </Box>
 
                 <Tooltip title="Open settings">

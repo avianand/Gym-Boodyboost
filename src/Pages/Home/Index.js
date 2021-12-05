@@ -4,6 +4,7 @@ import "./index.scss";
 import Carousel from "../../Components/Carousel";
 import Gallery from "../../Components/Gallery";
 import Pricing from "../../Components/Pricing";
+import Amenities from "../About/amenities";
 
 const Home = () => {
   return (
@@ -24,6 +25,9 @@ const Home = () => {
 
       <section id="Gallery" className="gallery">
         <Gallery />
+      </section>
+      <section className="amenities">
+        <Amenities />
       </section>
     </Box>
   );

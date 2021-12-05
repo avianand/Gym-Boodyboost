@@ -126,7 +126,6 @@ export default function Footer() {
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3702.9821874971644!2d83.92096101539379!3d21.858222764318796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a20df180d4d1889%3A0x4d7d37b040cb3cd7!2sBody%20Boost%20Fitness%20%26%20Gym!5e0!3m2!1sen!2sin!4v1638676604161!5m2!1sen!2sin"
             width="200"
             height="200"
-            allowfullscreen=""
             loading="lazy"
           ></iframe>
         </Grid>
@@ -154,7 +153,6 @@ export default function Footer() {
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3703.928767445426!2d83.85098661539337!3d21.821682965610858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a20df9cc0a1a321%3A0xfe380d22a3c01961!2sBody%20Boost%20Fitness%20%26%20Gym!5e0!3m2!1sen!2sin!4v1638677113223!5m2!1sen!2sin"
             width="200"
             height="200"
-            allowfullscreen=""
             loading="lazy"
           ></iframe>
         </Grid>
