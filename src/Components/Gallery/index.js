@@ -6,6 +6,7 @@ import Container from "@mui/material/Container";
 import itemData from "./imageData.js";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
+import "./index.scss";
 
 const GalleryFunction = () => {
   const [photoIndex, setphotoIndex] = React.useState(0);

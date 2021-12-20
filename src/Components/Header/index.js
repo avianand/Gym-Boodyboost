@@ -14,13 +14,14 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 import gymlogo from "../../assets/img/gym-logo.svg";
-import Home from "../../Pages/Home/Index";
 import MenuIcon from "@mui/icons-material/Menu";
 import "./index.scss";
-import { ShoppingCart } from "@mui/icons-material";
+import { ExitToApp, Person, ShoppingCart } from "@mui/icons-material";
+import { getAuth, signOut } from "firebase/auth";
 
 const pages = ["About", "Pricing", "Gallery"];
-const settings = ["About"];
+const settings = ["Admin Portal"];
+const AdminOptions = ["Admin Portal"];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -39,6 +40,17 @@ const Header = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        // An error happened.
+      });
   };
 
   return (
@@ -146,6 +158,7 @@ const Header = () => {
                             textDecoration: "none",
                             color: "white",
                           }}
+                          key={page}
                         >
                           <Button
                             key={page}
@@ -171,37 +184,36 @@ const Header = () => {
                       );
                     } else {
                       return (
-                        <>
-                          <a
-                            style={{
-                              textDecoration: "none",
-                              color: "white",
-                            }}
-                            href={`#${page}`}
+                        <a
+                          style={{
+                            textDecoration: "none",
+                            color: "white",
+                          }}
+                          href={`#${page}`}
+                          key={page}
+                        >
+                          <Button
+                            key={page}
+                            onClick={handleCloseNavMenu}
+                            sx={[
+                              {
+                                my: 2,
+                                mx: 4,
+                                color: "white",
+                                display: "block",
+                              },
+                              {
+                                "&:hover": {
+                                  color: "secondary.main",
+                                  cursor: "pointer",
+                                },
+                              },
+                            ]}
                           >
-                            <Button
-                              key={page}
-                              onClick={handleCloseNavMenu}
-                              sx={[
-                                {
-                                  my: 2,
-                                  mx: 4,
-                                  color: "white",
-                                  display: "block",
-                                },
-                                {
-                                  "&:hover": {
-                                    color: "secondary.main",
-                                    cursor: "pointer",
-                                  },
-                                },
-                              ]}
-                            >
-                              {" "}
-                              {page}
-                            </Button>
-                          </a>
-                        </>
+                            {" "}
+                            {page}
+                          </Button>
+                        </a>
                       );
                     }
                   })}
@@ -209,7 +221,7 @@ const Header = () => {
 
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <ShoppingCart style={{ color: "white" }} />
+                    <Person style={{ color: "white" }} />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -228,11 +240,26 @@ const Header = () => {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">{setting}</Typography>
+                  {user ? (
+                    <>
+                      <MenuItem onClick={handleCloseNavMenu}>
+                        <Link to="/admin" textAlign="center">
+                          {user?.displayName}
+                        </Link>
+                      </MenuItem>
+                      <MenuItem onClick={handleCloseNavMenu}>
+                        <IconButton onClick={handleSignOut} textAlign="center">
+                          Log Out <ExitToApp />
+                        </IconButton>
+                      </MenuItem>
+                    </>
+                  ) : (
+                    <MenuItem onClick={handleCloseNavMenu}>
+                      <Link to="/admin" textAlign="center">
+                        Admin portal
+                      </Link>
                     </MenuItem>
-                  ))}
+                  )}
                 </Menu>
               </Box>
             </Toolbar>

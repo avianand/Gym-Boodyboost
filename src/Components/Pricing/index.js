@@ -9,8 +9,8 @@ import CardHeader from "@mui/material/CardHeader";
 import Grid from "@mui/material/Grid";
 import StarIcon from "@mui/icons-material/StarBorder";
 import Typography from "@mui/material/Typography";
-
 import Container from "@mui/material/Container";
+import "./index.scss";
 
 const tiers = [
   {
@@ -46,7 +46,7 @@ const tiers = [
 
 function PricingContent() {
   return (
-    <React.Fragment>
+    <React.Fragment className="pricing">
       <Container
         disableGutters
         maxWidth="sm"
