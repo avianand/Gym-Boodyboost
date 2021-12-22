@@ -1,5 +1,5 @@
-.adminPortal{
-    height: 100vh;
+.addCustomers{
+    height: 100%;
     
     &__paper{
         padding: 2rem;
@@ -8,7 +8,13 @@
         align-items: center;
         justify-content: center;
     }
-    span{
-        padding: 2rem 0;
+    .field{
+        margin: 1rem 0;
+    }
+    .form{
+        
+        .button{
+            margin: 2rem 0;
+        }
     }
 }

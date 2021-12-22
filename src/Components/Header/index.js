@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import gymlogo from "../../assets/img/gym-logo.svg";
 import MenuIcon from "@mui/icons-material/Menu";
 import "./index.scss";
@@ -26,7 +27,7 @@ const AdminOptions = ["Admin Portal"];
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const navigate = useNavigate();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -43,10 +44,11 @@ const Header = () => {
   };
   const auth = getAuth();
   const user = auth.currentUser;
+
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
-        // Sign-out successful.
+        navigate("/");
       })
       .catch((error) => {
         // An error happened.
@@ -131,16 +133,18 @@ const Header = () => {
                 component="div"
                 sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
               >
-                <Avatar
-                  style={{
-                    backgroundColor: "white",
-                    height: "5rem",
-                    width: "5rem",
-                  }}
-                  alt="Bodyboost Gym logo"
-                  src={gymlogo}
-                  variant="square"
-                />
+                <Link to="/">
+                  <Avatar
+                    style={{
+                      backgroundColor: "white",
+                      height: "5rem",
+                      width: "5rem",
+                    }}
+                    alt="Bodyboost Gym logo"
+                    src={gymlogo}
+                    variant="square"
+                  />
+                </Link>
               </Typography>
               {/* menu desktop */}
               <Box
@@ -244,7 +248,7 @@ const Header = () => {
                     <>
                       <MenuItem onClick={handleCloseNavMenu}>
                         <Link to="/admin" textAlign="center">
-                          {user?.displayName}
+                          Admin Portal
                         </Link>
                       </MenuItem>
                       <MenuItem onClick={handleCloseNavMenu}>
@@ -256,7 +260,7 @@ const Header = () => {
                   ) : (
                     <MenuItem onClick={handleCloseNavMenu}>
                       <Link to="/admin" textAlign="center">
-                        Admin portal
+                        Login
                       </Link>
                     </MenuItem>
                   )}

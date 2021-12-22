@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Button } from "@mui/material";
+import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router";
 import "./index.scss";
 
@@ -8,7 +9,8 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [userDetails, setUserDetails] = useState(null);
+  const location = useLocation();
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -20,22 +22,29 @@ const Login = () => {
     setEmail(e.target.value);
   };
 
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    navigate("/admin");
-  } else {
-    // No user is signed in.
-  }
+  useEffect(() => {
+    if (userDetails) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      // if (path) {
+      //   navigate(path);
+      // }
+      if (location.state) {
+        navigate(location.state);
+      }
+      navigate("/admin");
+    } else {
+      // No user is signed in.
+    }
+  }, [userDetails]);
 
   const handleLogin = (event) => {
     event.preventDefault();
-
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log("Signed In");
+        setUserDetails(user);
         // ...
       })
       .catch((error) => {

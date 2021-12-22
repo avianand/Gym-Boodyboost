@@ -1,10 +1,13 @@
-import { Button } from "@mui/material";
+import { Button, Paper, Typography } from "@mui/material";
 import React from "react";
 import { getAuth, signOut } from "firebase/auth";
 import "./index.scss";
+import { useNavigate } from "react-router-dom";
 
 const AdminPortal = () => {
   const auth = getAuth();
+  const navigate = useNavigate();
+
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -17,29 +20,36 @@ const AdminPortal = () => {
 
   return (
     <div className="adminPortal">
-      Admin portal
-      <Button
-        variant="contained"
-        color="secondary"
-        //onClick={() => handleSignOut}
-      >
-        Add new customer
-      </Button>
-      <Button
-        variant="contained"
-        color="secondary"
-        //onClick={() => handleSignOut}
-      >
-        View Customers
-      </Button>
-      <br />
-      <Button
-        variant="contained"
-        color="secondary"
-        onClick={() => handleSignOut}
-      >
-        Sign Out
-      </Button>
+      <Paper elevation={2} className="adminPortal__paper">
+        <Typography variant="h3">Admin portal</Typography>
+        <span>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => navigate("/customers/add")}
+          >
+            Add customer
+          </Button>
+        </span>
+        <span>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => navigate("/customers/view")}
+          >
+            View Customers
+          </Button>
+        </span>
+
+        <br />
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => handleSignOut}
+        >
+          Sign Out
+        </Button>
+      </Paper>
     </div>
   );
 };

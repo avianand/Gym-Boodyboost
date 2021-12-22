@@ -8,6 +8,8 @@ import RequireAdminAuth from "./RequireAdminAuth";
 import AdminPortal from "./Pages/Admin/AdminPortal";
 import "./App.css";
 import "./firebase";
+import ViewCustomers from "./Pages/Admin/ViewCustomers";
+import AddCustomers from "./Pages/Admin/AddCustomers";
 function App() {
   return (
     <div className="App">
@@ -20,8 +22,27 @@ function App() {
           <Route
             path="/admin"
             element={
-              <RequireAdminAuth redirectTo="/admin/login">
+              <RequireAdminAuth path="/admin" redirectTo="/admin/login">
                 <AdminPortal />
+              </RequireAdminAuth>
+            }
+          />
+          <Route
+            path="/customers/view"
+            element={
+              <RequireAdminAuth
+                path="/customers/view"
+                redirectTo="/admin/login"
+              >
+                <ViewCustomers />
+              </RequireAdminAuth>
+            }
+          />
+          <Route
+            path="/customers/add"
+            element={
+              <RequireAdminAuth path="/customers/add" redirectTo="/admin/login">
+                <AddCustomers />
               </RequireAdminAuth>
             }
           />
