@@ -10,6 +10,7 @@ import {
   Email,
   FitnessCenter,
   LocationOn,
+  Map,
   Phone,
   RunCircle,
 } from "@mui/icons-material";
@@ -58,7 +59,11 @@ export default function Footer() {
             variant="body1"
           >
             <FitnessCenter sx={{ color: "secondary.main" }} />
-            <Typography variant="h6"> Bodyboost gym</Typography>
+            <Typography variant="h6">
+              {" "}
+              Bodyboost Gym <br /> & <br />
+              Fitness Center
+            </Typography>
             <br />
             <Link
               sx={[
@@ -120,6 +125,9 @@ export default function Footer() {
               <br />
               Body Boost Fitness & Gym, Gandhi Chowk, Brajrajnagar, Jharsuguda -
               768216, Odisha
+              <br />
+              <Map sx={{ color: "secondary.main" }} />
+              <br /> (Click to open maps)
             </Typography>
           </Link>
           <iframe
@@ -147,6 +155,9 @@ export default function Footer() {
               <LocationOn sx={{ color: "secondary.main" }} />
               <br /> Body Boost Fitness & Gym,Shivam complex, Railway Fatak, in
               front of Belpahar, Belpahar, Odisha, 768218
+              <br />
+              <Map sx={{ color: "secondary.main" }} />
+              <br /> (Click to open maps )
             </Typography>
           </Link>
           <iframe

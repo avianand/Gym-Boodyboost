@@ -10,12 +10,12 @@ function SliderContent({ activeIndex, sliderImage }) {
           className={index === activeIndex ? "slides active" : "inactive"}
         >
           <img className="slide-image" src={slide.urls} alt="" />
-          <Typography component="h2" variant="h3" className="slide-title">
+          <Typography component="h4" variant="h3" className="slide-title">
             {slide.title}
           </Typography>
-          <Typography component="h4" variant="h5" className="slide-text">
-            {`${slide.description}`}
-          </Typography>
+          {/* <Typography component="h4" variant="h6" className="slide-text">
+            {slide.description}
+          </Typography> */}
         </div>
       ))}
     </section>
