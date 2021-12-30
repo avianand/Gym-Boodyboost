@@ -1,0 +1,14 @@
+.adminPortal{
+    height: 100vh;
+    
+    &__paper{
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    span{
+        padding: 2rem 0;
+    }
+}
